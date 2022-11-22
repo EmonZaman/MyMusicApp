@@ -19,6 +19,11 @@ class MusicPlayerViewController: UIViewController {
     var timer: Timer?
     
     
+    
+    
+    
+    
+    
     private let albumImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit

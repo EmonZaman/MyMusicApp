@@ -46,8 +46,8 @@
             filePath = "MyMusic/Controllers/MusicPlayer/MusicPlayerViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "346"
-            endingLineNumber = "346"
+            startingLineNumber = "351"
+            endingLineNumber = "351"
             landmarkName = "viewWillDisappear(_:)"
             landmarkType = "7">
             <Locations>
