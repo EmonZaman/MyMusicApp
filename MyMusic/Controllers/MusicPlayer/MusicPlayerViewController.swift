@@ -18,12 +18,6 @@ class MusicPlayerViewController: UIViewController {
     var player: AVAudioPlayer?
     var timer: Timer?
     
-    
-    
-    
-    
-    
-    
     private let albumImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
@@ -75,6 +69,9 @@ class MusicPlayerViewController: UIViewController {
             
             
             return documentsPathURL.appendingPathComponent(nameOfSong)
+            
+//            let file = FileManager.default
+//            file.removeItem(at: documentsPathURL)
             
             
         }

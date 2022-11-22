@@ -111,6 +111,19 @@ class ViewController: UIViewController, MPMediaPickerControllerDelegate, UITable
             
             guard let title else{return}
             let outputURL = documentURL.appendingPathComponent("\(title).m4a")
+           
+            if FileManager.default.fileExists(atPath: outputURL.path) {
+                print("The file already exists at path")
+                
+                let alertController = UIAlertController(title: "Alert", message: "This song is already exists in your player Choose another", preferredStyle: .alert)
+
+                let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                alertController.addAction(okAction)
+                self.present(alertController, animated: true)
+                return
+//                return
+               
+            }
             
             print("OUTPUT \(outputURL)")
             do {
@@ -131,8 +144,6 @@ class ViewController: UIViewController, MPMediaPickerControllerDelegate, UITable
                 if thumbImage != nil{
                     newData.image = self.saveImageToDocumentDirectory(image: thumbImage, id: newData.id)
                 }
-                
-                
                 do {
                     try PersistentStorage.shared.saveContext()
                 } catch {
@@ -493,6 +504,28 @@ class ViewController: UIViewController, MPMediaPickerControllerDelegate, UITable
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70    }
+    func DeleteSongFromDocumentDirectory(nameOfSong: String ) {
+        if var documentsPathURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            //This gives you the URL of the path
+            
+            
+          let outputUrl =  documentsPathURL.appendingPathComponent(nameOfSong)
+            print("name if song \(nameOfSong)")
+            print("DELETING")
+            print(documentsPathURL)
+            
+            let file = FileManager.default
+            print("Image \(file)")
+            do{
+                try file.removeItem(at: outputUrl)
+                print("Deleting Complete..")
+                print("delete ccc...")
+            }
+            catch{
+                
+            }
+        }
+    }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         // let MusicInfo = MusicData(context: PersistentStorage.shared.context)
@@ -502,8 +535,11 @@ class ViewController: UIViewController, MPMediaPickerControllerDelegate, UITable
         print(self.data[0])
         if editingStyle == .delete {
             print("Deleted")
+            DeleteSongFromDocumentDirectory(nameOfSong: songs[indexPath.row].trackName ?? "none")
+            
             
             let songremove = self.data[indexPath.row]
+            
             PersistentStorage.shared.context.delete(songremove)
             PersistentStorage.shared.saveContext()
             
