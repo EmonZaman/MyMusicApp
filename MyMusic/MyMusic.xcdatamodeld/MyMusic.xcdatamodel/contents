@@ -11,5 +11,11 @@
         <attribute name="image" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="songUrl" optional="YES" attributeType="String"/>
+        <relationship name="playlist" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Playlist" inverseName="music" inverseEntity="Playlist"/>
+    </entity>
+    <entity name="Playlist" representedClassName="Playlist" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="music" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="MusicData" inverseName="playlist" inverseEntity="MusicData"/>
     </entity>
 </model>

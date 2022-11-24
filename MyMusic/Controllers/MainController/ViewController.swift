@@ -24,8 +24,16 @@ struct Song{
 
 
 class ViewController: UIViewController, MPMediaPickerControllerDelegate, UITableViewDelegate, UITableViewDataSource, UIDocumentPickerDelegate {
+    @IBAction func emptyAddButton(_ sender: UIButton) {
+        let controller = MPMediaPickerController(mediaTypes: .music)
+        controller.allowsPickingMultipleItems = false
+        controller.popoverPresentationController?.sourceView = sender
+        controller.delegate = self
+        present(controller, animated: true)
+    }
     
     @IBOutlet weak var table: UITableView!
+    @IBOutlet weak var emptyView: UIView!
     
     @IBAction func onAddButtonClick(_ sender: UIButton) {
         
@@ -53,11 +61,6 @@ class ViewController: UIViewController, MPMediaPickerControllerDelegate, UITable
     var data = [MusicData]()
     var songs = [Song]()
     var player2: AVAudioPlayer?
-    
-    
-    
-    
-    
     private func playVideo(url:URL) {
         
         do{
@@ -74,6 +77,40 @@ class ViewController: UIViewController, MPMediaPickerControllerDelegate, UITable
         
         player.play()
     }
+    
+    override func viewDidLoad() {
+        
+        // dataLoad()
+        convertMusicTOData()
+        navigationItem.title = "MyMusic"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
+        
+        super.viewDidLoad()
+        
+        
+        print("printing data")
+        // Do any additional setup after loading the view.
+        if songs.count == 0 {
+            // tableView is empty. You can set a backgroundView for it.
+            print("data is empty .............")
+//            navigationItem.title = "MyMusic"
+            
+            emptyViewFunc()
+            table.delegate = self
+            table.dataSource = self
+            
+        }
+        else
+        {
+            table.delegate = self
+            table.dataSource = self
+            
+          
+            
+        }
+    }
+    
     
     func mediaPicker(_ mediaPicker: MPMediaPickerController, didPickMediaItems mediaItemCollection: MPMediaItemCollection) {
         mediaPicker.dismiss(animated: true) {
@@ -94,7 +131,6 @@ class ViewController: UIViewController, MPMediaPickerControllerDelegate, UITable
                 print("Picking Error")
                 return
             }
-            
             // get file extension andmime type
             let str = pathURL!.absoluteString
             let str2 = str.replacingOccurrences( of : "ipod-library://item/item", with: "")
@@ -111,21 +147,22 @@ class ViewController: UIViewController, MPMediaPickerControllerDelegate, UITable
             
             guard let title else{return}
             let outputURL = documentURL.appendingPathComponent("\(title).m4a")
-           
+            
             if FileManager.default.fileExists(atPath: outputURL.path) {
                 print("The file already exists at path")
                 
                 let alertController = UIAlertController(title: "Alert", message: "This song is already exists in your player Choose another", preferredStyle: .alert)
-
+                
                 let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
                 alertController.addAction(okAction)
                 self.present(alertController, animated: true)
                 return
-//                return
-               
+                //                return
+                
             }
             
             print("OUTPUT \(outputURL)")
+            let newData = MusicData(context: self.context)
             do {
                 // after downloading your file you need to move it to your destination url
                 // try FileManager.default.moveItem(at: documentURL, to: outputURL)
@@ -133,14 +170,11 @@ class ViewController: UIViewController, MPMediaPickerControllerDelegate, UITable
                 print("destination URL")
                 print(outputURL)
                 //  let MusicInfo = MusicData(context: PersistentStorage.shared.context)
-                let newData = MusicData(context: self.context)
+                //                let newData = MusicData(context: self.context)
                 newData.id = UUID()
                 newData.name = title
-                
                 newData.songUrl = title + ".m4a"
-                
                 newData.artistName = item.artist
-                
                 if thumbImage != nil{
                     newData.image = self.saveImageToDocumentDirectory(image: thumbImage, id: newData.id)
                 }
@@ -153,25 +187,37 @@ class ViewController: UIViewController, MPMediaPickerControllerDelegate, UITable
                 
                 self.data.insert(newData, at: 0)
                 
-                
-                
                 print("File moved to documents folder")
-                if thumbImage != nil{
-                    self.songs.append(Song(name: newData.name ?? "tt" , albumName: "Artcell", artistname: item.artist, image: "3", trackName: (title + ".m4a"), thumbImgae: thumbImage ))
-                    
-                }
-                else{
-                    self.songs.append(Song(name: newData.name ?? "tt" , albumName: "Artcell", artistname: item.artist, image: "3", trackName: (title + ".m4a"), thumbImgae:  UIImage(named: "1") ))
-                    
-                }
+                //                if thumbImage != nil{
+                //                    self.songs.append(Song(name: newData.name ?? "tt" , albumName: "Artcell", artistname: item.artist, image: "3", trackName: (title + ".m4a"), thumbImgae: thumbImage ))
+                //
+                //                }
+                //                else{
+                //                    self.songs.append(Song(name: newData.name ?? "tt" , albumName: "Artcell", artistname: item.artist, image: "3", trackName: (title + ".m4a"), thumbImgae:  UIImage(named: "1") ))
+                //
+                //                }
                 
                 
                 //  PersistentStorage.shared.saveContext()
                 //                     /   convertMusicTODatia()
-                self.table.reloadData()
+                self.table.backgroundView?.alpha = 0
+                
             } catch let error as NSError {
                 print(error.localizedDescription)
             }
+            
+            if thumbImage != nil{
+                self.songs.append(Song(name: newData.name ?? "tt" , albumName: "Artcell", artistname: item.artist, image: "3", trackName: (title + ".m4a"), thumbImgae: thumbImage ))
+                
+                
+            }
+            else{
+                self.songs.append(Song(name: newData.name ?? "tt" , albumName: "Artcell", artistname: item.artist, image: "3", trackName: (title + ".m4a"), thumbImgae:  UIImage(named: "1") ))
+                
+            }
+            self.table.reloadData()
+            
+            
             
             
             //Delete Existing file
@@ -187,14 +233,23 @@ class ViewController: UIViewController, MPMediaPickerControllerDelegate, UITable
                 if exportSession!.status == AVAssetExportSession.Status.completed  {
                     print("Export Successfull")
                     
+                    
+                    
                     DispatchQueue.main.asyncAfter(deadline: .now()+1){
                         // self.playVideo(url: outputURL)
                     }
+                    
                 }
                 
-            })
+                
+            }
+                                                
+            )
+            
+            
             
         }
+        
         
     }
     func saveImageToDocumentDirectory(image: UIImage?, id: UUID? ) -> String? {
@@ -324,8 +379,6 @@ class ViewController: UIViewController, MPMediaPickerControllerDelegate, UITable
             //                        print(error.localizedDescription)
             //                    }
             //                }).resume()
-            
-            
             do {
                 // after downloading your file you need to move it to your destination url
                 try FileManager.default.moveItem(at: audioUrl, to: destinationUrl)
@@ -408,21 +461,14 @@ class ViewController: UIViewController, MPMediaPickerControllerDelegate, UITable
                 newData.name = "test1"
                 //   newData.songUrl = destinationUrl
                 newData.artistName = "artist"
-                
-                
                 do {
                     try PersistentStorage.shared.saveContext()
                 } catch {
                     print("Error")
-                    
                 }
-                
                 self.data.insert(newData, at: 0)
-                
-                
                 print("File moved to documents folder")
                 songs.append(Song(name: newData.name ?? "tt" , albumName: "Artcell", artistname: "Lincon", image: "3", trackName: newData.songUrl, thumbImgae: UIImage(named: "1")))
-                
                 //  PersistentStorage.shared.saveContext()
                 //                     /   convertMusicTOData()
                 table.reloadData()
@@ -445,27 +491,22 @@ class ViewController: UIViewController, MPMediaPickerControllerDelegate, UITable
         
     }
     
-    
-    
-    override func viewDidLoad() {
+    func emptyViewFunc(){
+        table.backgroundView = emptyView
+        self.table.backgroundView?.alpha = 1
+        //  table.reloadData()
         
-        // dataLoad()
-        convertMusicTOData()
-        navigationItem.title = "MyMusic"
-        navigationController?.navigationBar.prefersLargeTitles = true
-        super.viewDidLoad()
+        print("empty viw Called")
+    }
+    func notEmpty(){
         table.delegate = self
         table.dataSource = self
+        navigationController?.navigationBar.prefersLargeTitles = true
         
-        print("printing data")
-        // Do any additional setup after loading the view.
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return songs.count
-        
-        
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -509,7 +550,7 @@ class ViewController: UIViewController, MPMediaPickerControllerDelegate, UITable
             //This gives you the URL of the path
             
             
-          let outputUrl =  documentsPathURL.appendingPathComponent(nameOfSong)
+            let outputUrl =  documentsPathURL.appendingPathComponent(nameOfSong)
             print("name if song \(nameOfSong)")
             print("DELETING")
             print(documentsPathURL)
@@ -552,6 +593,9 @@ class ViewController: UIViewController, MPMediaPickerControllerDelegate, UITable
             self.data.remove(at: indexPath.row)
             self.songs.remove(at: indexPath.row)
             self.table.deleteRows(at: [indexPath], with: .automatic)
+            if songs.count == 0{
+                self.emptyViewFunc()
+            }
             //   table.reloadData()
             
         }
