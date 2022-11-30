@@ -2,7 +2,7 @@
 //  Playlist+CoreDataProperties.swift
 //  MyMusic
 //
-//  Created by Twinbit Limited on 24/11/22.
+//  Created by Twinbit Limited on 27/11/22.
 //
 //
 
@@ -16,26 +16,26 @@ extension Playlist {
         return NSFetchRequest<Playlist>(entityName: "Playlist")
     }
 
-    @NSManaged public var name: String?
     @NSManaged public var id: UUID?
-    @NSManaged public var music: NSSet?
+    @NSManaged public var name: String?
+    @NSManaged public var songs: NSSet?
 
 }
 
-// MARK: Generated accessors for music
+// MARK: Generated accessors for songs
 extension Playlist {
 
-    @objc(addMusicObject:)
-    @NSManaged public func addToMusic(_ value: MusicData)
+    @objc(addSongsObject:)
+    @NSManaged public func addToSongs(_ value: MusicData)
 
-    @objc(removeMusicObject:)
-    @NSManaged public func removeFromMusic(_ value: MusicData)
+    @objc(removeSongsObject:)
+    @NSManaged public func removeFromSongs(_ value: MusicData)
 
-    @objc(addMusic:)
-    @NSManaged public func addToMusic(_ values: NSSet)
+    @objc(addSongs:)
+    @NSManaged public func addToSongs(_ values: NSSet)
 
-    @objc(removeMusic:)
-    @NSManaged public func removeFromMusic(_ values: NSSet)
+    @objc(removeSongs:)
+    @NSManaged public func removeFromSongs(_ values: NSSet)
 
 }
 

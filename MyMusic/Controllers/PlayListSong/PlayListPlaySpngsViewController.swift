@@ -10,11 +10,11 @@ import UIKit
 import AVFoundation
 import AVKit
 
-class MusicPlayerViewController: UIViewController {
+class PlayListPlaySongsViewController: UIViewController {
     
     public var position: Int = 0
-    public var songs: [Song] = []
-    @IBOutlet weak var holder: UIView!
+    public var songs: [MusicData] = []
+    @IBOutlet weak var holder2: UIView!
     var player: AVAudioPlayer?
     var timer: Timer?
     
@@ -50,6 +50,7 @@ class MusicPlayerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("!!!!!!!@@@@@!!!!!!!")
         
         
         
@@ -58,7 +59,7 @@ class MusicPlayerViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        if holder.subviews.count == 0{
+        if holder2.subviews.count == 0{
             configure()
         }
     }
@@ -90,6 +91,18 @@ class MusicPlayerViewController: UIViewController {
     //
     //        player.play()
     //    }
+    func loadImageFromDocumentDirectory(nameOfImage : String) -> UIImage {
+        let nsDocumentDirectory = FileManager.SearchPathDirectory.documentDirectory
+        let nsUserDomainMask = FileManager.SearchPathDomainMask.userDomainMask
+        let paths = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true)
+        print(paths.first)
+        if let dirPath = paths.first{
+            let imageURL = URL(fileURLWithPath: dirPath).appendingPathComponent(nameOfImage)
+            let image    = UIImage(contentsOfFile: imageURL.path)
+            return image ?? UIImage(named: "1")!
+        }
+        return UIImage.init(named: "1")!
+    }
     func playMusic(url: URL) {
         print("url is \(url)")
         print("This is played")
@@ -123,11 +136,11 @@ class MusicPlayerViewController: UIViewController {
             //                return
             //            }
             
-            print(song.trackName)
+            print(song.songUrl)
             var url: URL?
             
             
-            if let name = song.trackName, let url1 =
+            if let name = song.songUrl, let url1 =
                 loadSongFromDocumentDirectory(nameOfSong:name ){
                 url = url1
                 
@@ -180,30 +193,31 @@ class MusicPlayerViewController: UIViewController {
         //Album cover
         albumImageView.frame = CGRect(x: 10,
                                       y: 10,
-                                      width: holder.frame.size.width-20,
-                                      height: holder.frame.size.width-20)
-        albumImageView.image = song.thumbImgae
-        holder.addSubview(albumImageView)
+                                      width: holder2.frame.size.width-20,
+                                      height: holder2.frame.size.width-20)
+        var image = loadImageFromDocumentDirectory(nameOfImage: song.image ?? "")
+        albumImageView.image = image
+        holder2.addSubview(albumImageView)
         
         //Labels : songName, album,, artist
         songNameLabel.frame = CGRect(x: 10,
                                      y: albumImageView.frame.size.height,
-                                     width: holder.frame.size.width-20,
+                                     width: holder2.frame.size.width-20,
                                      height: 70)
         albumNameLabel.frame = CGRect(x: 10,
                                       y: albumImageView.frame.size.height + 50,
-                                      width: holder.frame.size.width-20,
+                                      width: holder2.frame.size.width-20,
                                       height: 70)
         artistNameLabel.frame = CGRect(x: 10,
                                        y: albumImageView.frame.size.height  + 100,
-                                       width: holder.frame.size.width-20,
+                                       width: holder2.frame.size.width-20,
                                        height: 70)
         songNameLabel.text = song.name
         albumNameLabel.text = song.albumName
-        artistNameLabel.text = song.artistname
-        holder.addSubview(songNameLabel)
-        holder.addSubview(albumNameLabel)
-        holder.addSubview(artistNameLabel)
+        artistNameLabel.text = song.artistName
+        holder2.addSubview(songNameLabel)
+        holder2.addSubview(albumNameLabel)
+        holder2.addSubview(artistNameLabel)
         
         
         //player controllers
@@ -220,8 +234,8 @@ class MusicPlayerViewController: UIViewController {
         
         let yPosition = artistNameLabel.frame.origin.y + 100 + 20
         let size: CGFloat = 70
-        playPauseButton.frame = CGRect(x: (holder.frame.size.width - size) / 2.0, y: yPosition, width: size, height: size)
-        nextButton.frame = CGRect(x: holder.frame.size.width - size - 20, y: yPosition, width: size, height: size)
+        playPauseButton.frame = CGRect(x: (holder2.frame.size.width - size) / 2.0, y: yPosition, width: size, height: size)
+        nextButton.frame = CGRect(x: holder2.frame.size.width - size - 20, y: yPosition, width: size, height: size)
         backButton.frame = CGRect(x: 20, y: yPosition, width: size, height: size)
         
         
@@ -235,26 +249,26 @@ class MusicPlayerViewController: UIViewController {
         nextButton.tintColor = .black
         backButton.tintColor = .black
         
-        holder.addSubview(playPauseButton)
-        holder.addSubview(nextButton)
-        holder.addSubview(backButton)
+        holder2.addSubview(playPauseButton)
+        holder2.addSubview(nextButton)
+        holder2.addSubview(backButton)
         
         //slider volume
-        let slider = UISlider(frame: CGRect(x: 20, y: holder.frame.size.height-60, width: holder.frame.size.width-40, height: 50))
+        let slider = UISlider(frame: CGRect(x: 20, y: holder2.frame.size.height-60, width: holder2.frame.size.width-40, height: 50))
         slider.value = 0.5
         slider.tintColor = .red
         slider.backgroundColor = .black
         slider.addTarget(self, action: #selector(didSlideSlider(_:)), for: .valueChanged    )
-        holder.addSubview(slider)
+        holder2.addSubview(slider)
         
         //Progress Bar
         
         
-        uiSlider.frame = CGRect(x: 20, y: holder.frame.size.height-240, width: holder.frame.size.width-40, height: 50)
+        uiSlider.frame = CGRect(x: 20, y: holder2.frame.size.height-240, width: holder2.frame.size.width-40, height: 50)
         // uiSlider.value = 0.0
         uiSlider.tintColor = .black
         uiSlider.addTarget(self, action: #selector(progressBar(_:)), for: .valueChanged)
-        holder.addSubview(uiSlider)
+        holder2.addSubview(uiSlider)
         // progress bar
         //        let updater = CADisplayLink(target: self, selector: #selector(self.musicProgress))
         //                updater.frameInterval = 1
@@ -281,8 +295,8 @@ class MusicPlayerViewController: UIViewController {
             UIView.animate(withDuration: 0.2, animations: {
                 self.albumImageView.frame = CGRect(x: 30,
                                                    y: 30,
-                                                   width: self.holder.frame.size.width-60,
-                                                   height: self.holder.frame.size.width-60)
+                                                   width: self.holder2.frame.size.width-60,
+                                                   height: self.holder2.frame.size.width-60)
                 
             })
         }
@@ -295,8 +309,8 @@ class MusicPlayerViewController: UIViewController {
             UIView.animate(withDuration: 0.2, animations: {
                 self.albumImageView.frame = CGRect(x: 10,
                                                    y: 10,
-                                                   width: self.holder.frame.size.width-20,
-                                                   height: self.holder.frame.size.width-20)
+                                                   width: self.holder2.frame.size.width-20,
+                                                   height: self.holder2.frame.size.width-20)
                 
             })
             
@@ -315,7 +329,7 @@ class MusicPlayerViewController: UIViewController {
         if position > 0{
             position = position - 1
             player?.stop()
-            for subview in holder.subviews{
+            for subview in holder2.subviews{
                 subview.removeFromSuperview()
             }
             configure()
@@ -326,7 +340,7 @@ class MusicPlayerViewController: UIViewController {
         if position <  (songs.count - 1 ){
             position = position + 1
             player?.stop()
-            for subview in holder.subviews{
+            for subview in holder2.subviews{
                 subview.removeFromSuperview()
             }
             configure()

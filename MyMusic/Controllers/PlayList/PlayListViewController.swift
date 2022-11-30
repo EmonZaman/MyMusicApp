@@ -6,18 +6,60 @@
 //
 
 import UIKit
+//struct PlayList{
+//    var name: String?
+//}
+var playLists = [Playlist]()
+
+protocol PlayListDelegate: AnyObject {
+    func deletePlayList()
+}
 
 class PlayListViewController: UIViewController {
+    
+    
+    
     @IBOutlet weak var playListView: UICollectionView!
+    let context = PersistentStorage.shared.context
+    // var playLists = [PlayList]()
     
     
     
-
+    
+    func playListLoad(){
+        do {
+            
+            guard let result =   try PersistentStorage.shared.context.fetch(Playlist.fetchRequest()) as? [Playlist] else {return}
+            print("data Converting start")
+            
+            result.forEach { playlist in
+                
+                //  playLists.append(PlayList(name: playlist.name))
+                
+            }
+            
+            
+        } catch let error {
+            debugPrint(error)
+        }
+        
+    }
+    func currentData(){
+        print("current data")
+        playLists = PersistentStorage.shared.playlists()
+        
+    }
+    
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        //  playListLoad()
         navigationItem.title = "Playlist"
         navigationController?.navigationBar.prefersLargeTitles = true
-
+        
         print("Playlist view controller callled")
         let layout = UICollectionViewFlowLayout()
         
@@ -25,66 +67,203 @@ class PlayListViewController: UIViewController {
         playListView.collectionViewLayout = layout
         playListView.delegate = self
         playListView.dataSource = self
+        playLists = PersistentStorage.shared.playlists()
     }
     var tField: UITextField!
     
     @IBAction func btnPlayListAdd(_ sender: UIBarButtonItem) {
-   
-
-          func configurationTextField(textField: UITextField!)
-          {
-              print("generating the TextField")
-              textField.placeholder = "Playlist Name"
-              tField = textField
-          }
-
-          func handleCancel(alertView: UIAlertAction!)
-          {
-              print("Cancelled !!")
-          }
-
-          var alert = UIAlertController(title: "Enter Playlist Name", message: "", preferredStyle: .alert)
-
+        
+        
+        func configurationTextField(textField: UITextField!)
+        {
+            print("generating the TextField")
+            textField.placeholder = "Playlist Name"
+            tField = textField
+            
+        }
+        
+        func handleCancel(alertView: UIAlertAction!)
+        {
+            print("Cancelled !!")
+        }
+        
+        var alert = UIAlertController(title: "Enter Playlist Name", message: "", preferredStyle: .alert)
+        
         alert.addTextField(configurationHandler: configurationTextField)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:handleCancel))
-          alert.addAction(UIAlertAction(title: "Add", style: .default, handler:{ (UIAlertAction) in
-              print("Done !!")
-
-              print("Item : \(self.tField.text)")
-          }))
+        alert.addAction(UIAlertAction(title: "Add", style: .default, handler:{ (UIAlertAction) in
+            print("Done !!")
+            
+            print("Item : \(self.tField.text)")
+            // let newData = Playlist(context: self.context)
+            //  newData.name = self.tField.text
+            // newData.addToMusic(<#T##value: MusicData##MusicData#>)
+            //   self.playLists.append(PlayList(name: self.tField.text))
+            
+            //              let playlist = PersistentStorage.shared.playlist(name: self.tField.text ?? "null")
+            //              playLists.append(playlist)
+            //
+            //              PersistentStorage.shared.saveContext()
+            //              self.playListView.reloadData()
+            checkDuplicate()
+            
+        }))
         self.present(alert, animated: true, completion: {
-              print("completion block")
-          })
+            print("completion block")
+        })
+        
+        func checkDuplicate(){
+            print("The file already exists at path")
+            var rr = 0
+            do {
+                
+                guard let result =   try PersistentStorage.shared.context.fetch(Playlist.fetchRequest()) as? [Playlist] else {return}
+                
+                
+                
+                
+                result.forEach { playlist in
+                    print("in")
+                    if playlist.name == tField.text{
+                        rr = 1
+                        print("The file already exists at path")
+                        
+                        let alertController = UIAlertController(title: "Alert", message: "There is a Playlist with same name already exists in your app Choose Another", preferredStyle: .alert)
+                        
+                        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                        alertController.addAction(okAction)
+                        self.present(alertController, animated: true)
+                        return
+                        
+                    }
+                    
+                    
+                }
+                if rr == 0 {
+                    let playlist = PersistentStorage.shared.playlist(name: self.tField.text ?? "null")
+                    playLists.append(playlist)
+                    
+                    PersistentStorage.shared.saveContext()
+                    self.playListView.reloadData()
+                    
+                }
+                
+                
+                
+            } catch let error {
+                debugPrint(error)
+            }
+            
+            
+        }
+        
+        
         
     }
-
     
-
+    
+    
 }
-extension PlayListViewController: UICollectionViewDelegate{
+extension PlayListViewController: UICollectionViewDelegateFlowLayout{
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("This is tapped")
-//        print(albumList[indexPath.row])
-//        if let vc = storyboard?.instantiateViewController(identifier: "MusicListViewController") as? MusicListViewController{
-//            self.navigationController?.pushViewController(vc, animated: true)
-//        }
+        print("\(indexPath.row)")
         
+        if let vc = storyboard?.instantiateViewController(identifier: "playListSongsViewController") as? playListSongsViewController{
+            vc.index = indexPath.row
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        
+    }
+    func loadImageFromDocumentDirectory(nameOfImage : String) -> UIImage {
+        let nsDocumentDirectory = FileManager.SearchPathDirectory.documentDirectory
+        let nsUserDomainMask = FileManager.SearchPathDomainMask.userDomainMask
+        let paths = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true)
+        print(paths.first)
+        if let dirPath = paths.first{
+            let imageURL = URL(fileURLWithPath: dirPath).appendingPathComponent(nameOfImage)
+            let image    = UIImage(contentsOfFile: imageURL.path)
+            return image ?? UIImage(named: "1")!
+        }
+        return UIImage.init(named: "1")!
     }
     
 }
 extension PlayListViewController: UICollectionViewDataSource{
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        playLists = PersistentStorage.shared.playlists()
+        print("TOTAL PLAY LIST")
+        print(playLists.count)
+        return playLists.count
     }
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = playListView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! PlayListCollectionViewCell
-        cell.playListName.text = "TTT"
-        cell.playListName.backgroundColor = .red
-       
+        
+        var songs = PersistentStorage.shared.songs(playlist: playLists[indexPath.row])
+        var i = 0
+        var check = 0
+        for song in songs{
+            if(i == songs.count - 1){
+                print("here it comes")
+                var image = loadImageFromDocumentDirectory(nameOfImage: song.image ?? "")
+                
+                cell.lastImage.image = image
+                check = 1
+                
+            }
+            i += 1
+            
+        }
+        if check == 0{
+            cell.lastImage.image = UIImage(named: "1")
+        }
+        cell.playList = playLists[indexPath.row]
+        cell.delegate = self
+        
+        cell.playListName.text = playLists[indexPath.row].name
+        cell.playListName.textColor = .white
+        cell.playListName.backgroundColor = .black
+        // self.playListView.reloadData()
+        currentData()
+        
         
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        CGSize(width: UIScreen.main.bounds.width/4, height: 100)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        2
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.playListView.reloadData()
+        playLists = PersistentStorage.shared.playlists()
+        
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.playListView.reloadData()
+    }
     
     
+    
+}
+
+
+extension PlayListViewController: PlayListDelegate {
+    func deletePlayList() {
+        playLists = PersistentStorage.shared.playlists()
+        self.playListView.reloadData()
+        
+    }
 }

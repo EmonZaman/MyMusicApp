@@ -53,4 +53,67 @@ final class PersistentStorage
 
         return nil
     }
+    
+    func playlist(name: String) -> Playlist {
+           let playlist = Playlist(context: persistentContainer.viewContext)
+        playlist.name = name
+        print("playlist add is calling")
+        return playlist
+       }
+    
+    func musicData(name: String, artist: String, songUrl: String, image: String, playlist: Playlist) -> MusicData {
+        print("music add is caling..")
+           let song = MusicData(context: persistentContainer.viewContext)
+        song.name = name
+        song.artistName = artist
+        song.songUrl = songUrl
+        song.image = image
+        playlist.addToSongs(song)
+      
+           
+        return song
+       }
+    
+    func playlists() -> [Playlist] {
+        print("playlist is syuccefully fetching")
+          let request: NSFetchRequest<Playlist> = Playlist.fetchRequest()
+          var fetchedPlaylists: [Playlist] = []
+          
+          do {
+              fetchedPlaylists = try persistentContainer.viewContext.fetch(request)
+          } catch let error {
+              print("Error fetching singers \(error)")
+          }
+          return fetchedPlaylists
+      }
+    func songs(playlist: Playlist) -> [MusicData] {
+        print("ALL SONGS is Called")
+           let request: NSFetchRequest<MusicData> = MusicData.fetchRequest()
+           request.predicate = NSPredicate(format: "playlist = %@", playlist)
+        //   request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: false)]
+           var fetchedSongs: [MusicData] = []
+        print(fetchedSongs)
+           
+           do {
+               fetchedSongs = try persistentContainer.viewContext.fetch(request)
+           } catch let error {
+               print("Error fetching songs \(error)")
+           }
+        print(fetchedSongs)
+        print("succesfully returnning")
+           return fetchedSongs
+       }
+    func deleteSong(song: MusicData) {
+           let context = persistentContainer.viewContext
+           context.delete(song)
+           saveContext()
+       }
+       
+       func deletePlayList(playlist: Playlist) {
+           let context = persistentContainer.viewContext
+           context.delete(playlist)
+           saveContext()
+       }
+    
+    
 }
