@@ -16,7 +16,6 @@
 		030770DE2924AB53000E4E7E /* MyMusicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030770DD2924AB53000E4E7E /* MyMusicTests.swift */; };
 		030770E82924AB53000E4E7E /* MyMusicUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030770E72924AB53000E4E7E /* MyMusicUITests.swift */; };
 		030770EA2924AB53000E4E7E /* MyMusicUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030770E92924AB53000E4E7E /* MyMusicUITestsLaunchTests.swift */; };
-		030770F92924B359000E4E7E /* ViewControllerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030770F82924B359000E4E7E /* ViewControllerCell.swift */; };
 		030770FD2924C5A4000E4E7E /* MusicPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030770FB2924C5A4000E4E7E /* MusicPlayerViewController.swift */; };
 		030770FE2924C5A4000E4E7E /* MusicPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 030770FC2924C5A4000E4E7E /* MusicPlayerViewController.xib */; };
 		030771032924E4B6000E4E7E /* song2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 030771012924E4B6000E4E7E /* song2.mp3 */; };
@@ -25,6 +24,8 @@
 		03154ADC293857C000A138B6 /* Playlist+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03154AD8293857C000A138B6 /* Playlist+CoreDataProperties.swift */; };
 		03154ADD293857C000A138B6 /* MusicData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03154AD9293857C000A138B6 /* MusicData+CoreDataClass.swift */; };
 		03154ADE293857C000A138B6 /* MusicData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03154ADA293857C000A138B6 /* MusicData+CoreDataProperties.swift */; };
+		03154AE12938A50F00A138B6 /* ViewControllerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03154ADF2938A50F00A138B6 /* ViewControllerCell.swift */; };
+		03154AE22938A50F00A138B6 /* ViewControllerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03154AE02938A50F00A138B6 /* ViewControllerCell.xib */; };
 		033A18932929DBBD00E5A312 /* PersistentStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033A18922929DBBD00E5A312 /* PersistentStorage.swift */; };
 		03574EC2293322EF007F9BF0 /* PlayListSongsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03574EC0293322EF007F9BF0 /* PlayListSongsTableViewCell.swift */; };
 		03574EC3293322EF007F9BF0 /* PlayListSongsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03574EC1293322EF007F9BF0 /* PlayListSongsTableViewCell.xib */; };
@@ -66,7 +67,6 @@
 		030770E32924AB53000E4E7E /* MyMusicUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyMusicUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		030770E72924AB53000E4E7E /* MyMusicUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMusicUITests.swift; sourceTree = "<group>"; };
 		030770E92924AB53000E4E7E /* MyMusicUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMusicUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		030770F82924B359000E4E7E /* ViewControllerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerCell.swift; sourceTree = "<group>"; };
 		030770FB2924C5A4000E4E7E /* MusicPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerViewController.swift; sourceTree = "<group>"; };
 		030770FC2924C5A4000E4E7E /* MusicPlayerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MusicPlayerViewController.xib; sourceTree = "<group>"; };
 		030771012924E4B6000E4E7E /* song2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = song2.mp3; sourceTree = "<group>"; };
@@ -75,6 +75,8 @@
 		03154AD8293857C000A138B6 /* Playlist+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Playlist+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		03154AD9293857C000A138B6 /* MusicData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MusicData+CoreDataClass.swift"; sourceTree = "<group>"; };
 		03154ADA293857C000A138B6 /* MusicData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MusicData+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		03154ADF2938A50F00A138B6 /* ViewControllerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerCell.swift; sourceTree = "<group>"; };
+		03154AE02938A50F00A138B6 /* ViewControllerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewControllerCell.xib; sourceTree = "<group>"; };
 		033A18922929DBBD00E5A312 /* PersistentStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentStorage.swift; sourceTree = "<group>"; };
 		03574EC0293322EF007F9BF0 /* PlayListSongsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayListSongsTableViewCell.swift; sourceTree = "<group>"; };
 		03574EC1293322EF007F9BF0 /* PlayListSongsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayListSongsTableViewCell.xib; sourceTree = "<group>"; };
@@ -181,7 +183,8 @@
 			isa = PBXGroup;
 			children = (
 				030770C72924AB51000E4E7E /* ViewController.swift */,
-				030770F82924B359000E4E7E /* ViewControllerCell.swift */,
+				03154ADF2938A50F00A138B6 /* ViewControllerCell.swift */,
+				03154AE02938A50F00A138B6 /* ViewControllerCell.xib */,
 			);
 			path = MainController;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03154AE22938A50F00A138B6 /* ViewControllerCell.xib in Resources */,
 				030771032924E4B6000E4E7E /* song2.mp3 in Resources */,
 				030771042924E4B6000E4E7E /* song1.mp3 in Resources */,
 				030770D32924AB53000E4E7E /* LaunchScreen.storyboard in Resources */,
@@ -382,12 +386,12 @@
 				030770FD2924C5A4000E4E7E /* MusicPlayerViewController.swift in Sources */,
 				030770C42924AB51000E4E7E /* AppDelegate.swift in Sources */,
 				030770C62924AB51000E4E7E /* SceneDelegate.swift in Sources */,
-				030770F92924B359000E4E7E /* ViewControllerCell.swift in Sources */,
 				03154ADD293857C000A138B6 /* MusicData+CoreDataClass.swift in Sources */,
 				03E3594D292F78A000757B98 /* playListSongsViewController.swift in Sources */,
 				03E3594A292F3D9000757B98 /* PlayListCollectionViewCell.swift in Sources */,
 				03E35944292F3C4800757B98 /* PlayListViewController.swift in Sources */,
 				03154ADC293857C000A138B6 /* Playlist+CoreDataProperties.swift in Sources */,
+				03154AE12938A50F00A138B6 /* ViewControllerCell.swift in Sources */,
 				03574EC2293322EF007F9BF0 /* PlayListSongsTableViewCell.swift in Sources */,
 				03154ADB293857C000A138B6 /* Playlist+CoreDataClass.swift in Sources */,
 				033A18932929DBBD00E5A312 /* PersistentStorage.swift in Sources */,

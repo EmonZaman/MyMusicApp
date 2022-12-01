@@ -96,7 +96,9 @@ class ViewController: UIViewController, MPMediaPickerControllerDelegate, UITable
         
         
         super.viewDidLoad()
-        
+        let nib = UINib(nibName: "ViewControllerCell", bundle: nil)
+        table.register(nib, forCellReuseIdentifier: "cell")
+
         
         print("printing data")
         // Do any additional setup after loading the view.
@@ -106,6 +108,7 @@ class ViewController: UIViewController, MPMediaPickerControllerDelegate, UITable
 //            navigationItem.title = "MyMusic"
             
             emptyViewFunc()
+
             table.delegate = self
             table.dataSource = self
             
@@ -524,7 +527,7 @@ class ViewController: UIViewController, MPMediaPickerControllerDelegate, UITable
         let song = self.data[indexPath.row]
         
 //        self.delegate?.sendData(name: song.name ?? "name", albumName: song.albumName ?? "album", artistname: song.albumName!, image: song.image ?? " ", trackName: song.songUrl ?? " ", thumbImgae: song.image ?? " ")
-        
+    
         cell.song = song
         cell.lblSongName.text = songs[indexPath.row].name
         
@@ -535,6 +538,8 @@ class ViewController: UIViewController, MPMediaPickerControllerDelegate, UITable
         
         cell.lblSongName?.font = UIFont(name: "Helvetica-Bold", size: 18)
         cell.lblSongDetails?.font = UIFont(name: "Helvetica", size: 17)
+        cell.delegate2 = self
+        
       //  cell.folder = self.playlist
         print("THis")
         return cell
@@ -631,9 +636,11 @@ class ViewController: UIViewController, MPMediaPickerControllerDelegate, UITable
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        PersistentStorage.shared.saveContext()
+        
         self.convertMusicTOData()
         
-        self.playlist = PersistentStorage.shared.playlists()
+//        self.playlist = PersistentStorage.shared.playlists()
         
         self.table.reloadData()
 
@@ -642,6 +649,20 @@ class ViewController: UIViewController, MPMediaPickerControllerDelegate, UITable
 
     
     
+    
+    
+}
+extension ViewController: duplicateSongCheck{
+    func pass(check: Int) {
+        if check == 1{
+            let alertController = UIAlertController(title: "Alert", message: "There is a Playlist with same name already exists in your app Choose Another", preferredStyle: .alert)
+            
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(okAction)
+            
+              self.present(alertController, animated: true)
+        }
+    }
     
     
 }

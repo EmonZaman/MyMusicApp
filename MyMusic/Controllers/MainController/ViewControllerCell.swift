@@ -1,4 +1,12 @@
 //
+//  ViewControllerCell1.swift
+//  MyMusic
+//
+//  Created by Twinbit Limited on 1/12/22.
+//
+
+import UIKit
+//
 //  ViewControllerCell.swift
 //  MyMusic
 //
@@ -6,18 +14,29 @@
 //
 
 import UIKit
+protocol duplicateSongCheck: AnyObject {
+    func pass(check: Int)
+    
 
+}
 
 var playListArray = [String]()
+
+
+
 class ViewControllerCell: UITableViewCell {
+    
+    
     func sendData(name: String, albumName: String, artistname: String, image: String, trackName: String, thumbImgae: String) {
         print("none")
     }
     
-    
+  //  var delegate2 = duplicateSongCheck.self
+    weak var delegate2: duplicateSongCheck?
     var song: MusicData?
     let context = PersistentStorage.shared.context
     
+     
     
     @IBOutlet weak var lblSongName: UILabel!
     
@@ -28,9 +47,9 @@ class ViewControllerCell: UITableViewCell {
     @IBOutlet weak var playlistPopUpButton: UIButton! {
         
         didSet{
-            allPlayList()
-           let ans =  setPopUpButton()
             
+            //Button Action
+            playlistPopUpButton.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
           
             print("POP UP BUTTON CHOOSE")
            // print(ans)
@@ -45,6 +64,27 @@ class ViewControllerCell: UITableViewCell {
 //        }
 //    }
     var playListArray = [String]()
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        // Initialization code
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
+    }
+    
+    @objc func buttonAction() {
+        PersistentStorage.shared.saveContext()
+        allPlayList()
+        PersistentStorage.shared.saveContext()
+        setPopUpButton()
+    }
+    
+    
     func setPopUpButton(){
       
         let optionClosure = {(action: UIAction) in
@@ -72,17 +112,18 @@ class ViewControllerCell: UITableViewCell {
 
                     guard let result =   try PersistentStorage.shared.context.fetch(Playlist.fetchRequest()) as? [Playlist] else {return}
         
-            
+                    var localCheck = 0
                     result.forEach { playlist in
                         print("in")
                         if playlist.name == action.title{
                             print("playlist Name")
                             print(playlist.name)
                             
-                            playlist.addToSongs(self.song!)
+                         
                             print("TOTAL SONG COUNT AGAINS PLAYLSIT")
                             print(playlist.songs?.count)
                           //  print(playlist.songs)
+                           
                             playlist.songs?.forEach({ song1 in
                                 print("SONG LIST")
                                var song1 = song1 as! MusicData
@@ -90,20 +131,39 @@ class ViewControllerCell: UITableViewCell {
                                 print(song1.image)
                                 if(song1.name == self.song?.name)
                                 {
-                                    let alertController = UIAlertController(title: "Alert", message: "There is a Playlist with same name already exists in your app Choose Another", preferredStyle: .alert)
-
-                                    let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                                    alertController.addAction(okAction)
-                                  //  self.present(alertController, animated: true)
+                                    print(song1.name)
+                                    print(self.song?.name)
+//                                    let alertController = UIAlertController(title: "Alert", message: "There is a Playlist with same name already exists in your app Choose Another", preferredStyle: .alert)
+//
+//                                    let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+//                                    alertController.addAction(okAction)
+//
+//                                  //  self.present(alertController, animated: true)
+                                    
                                     print("THIS IS ALREADY IN your playsliu")
+                                    if let delegate2 = self.delegate2{
+                                        delegate2.pass(check: 1)
+                                        localCheck = 0
+                                    }
+                                    
                                     
                                 }
                                 
                                 
                             })
+                            if localCheck == 0 {
+                              
+                                    if let delegate2 = self.delegate2{
+                                        delegate2.pass(check: 0)
+                                    
+                                    }
+                                playlist.addToSongs(self.song!)
+                                PersistentStorage.shared.saveContext()
+                                return
+                                
+                            }
                             
-                            PersistentStorage.shared.saveContext()
-                            return
+                           
                         }
                         
                         
@@ -173,6 +233,7 @@ class ViewControllerCell: UITableViewCell {
         
     }
     func allPlayList(){
+        playListArray.removeAll()
         
 //        for itm in folder{
 //            playListArray.append(itm.name!)
