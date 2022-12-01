@@ -31,10 +31,11 @@ class PlayListViewController: UIViewController {
             
             guard let result =   try PersistentStorage.shared.context.fetch(Playlist.fetchRequest()) as? [Playlist] else {return}
             print("data Converting start")
+            playLists.removeAll()
             
             result.forEach { playlist in
                 
-                //  playLists.append(PlayList(name: playlist.name))
+                  playLists.append(playlist)
                 
             }
             
@@ -55,8 +56,9 @@ class PlayListViewController: UIViewController {
     
     
     override func viewDidLoad() {
+        print("PLAYLIUST DIDLOAD")
         super.viewDidLoad()
-        //  playListLoad()
+          playListLoad()
         navigationItem.title = "Playlist"
         navigationController?.navigationBar.prefersLargeTitles = true
         
@@ -67,7 +69,7 @@ class PlayListViewController: UIViewController {
         playListView.collectionViewLayout = layout
         playListView.delegate = self
         playListView.dataSource = self
-        playLists = PersistentStorage.shared.playlists()
+      //  playLists = PersistentStorage.shared.playlists()
     }
     var tField: UITextField!
     
@@ -191,29 +193,40 @@ extension PlayListViewController: UICollectionViewDelegateFlowLayout{
 }
 extension PlayListViewController: UICollectionViewDataSource{
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        playLists = PersistentStorage.shared.playlists()
+        print("number of Item in section")
+        self.playListLoad()
+      //  playLists = PersistentStorage.shared.playlists()
         print("TOTAL PLAY LIST")
         print(playLists.count)
         return playLists.count
     }
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        print("cell for ROw Called")
+        print("crash start")
         let cell = playListView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! PlayListCollectionViewCell
-        
-        var songs = PersistentStorage.shared.songs(playlist: playLists[indexPath.row])
+        print("HERE")
+       // var songs = PersistentStorage.shared.songs(playlist: playLists[indexPath.row])
+        var songs = playLists[indexPath.row].songs
         var i = 0
         var check = 0
-        for song in songs{
-            if(i == songs.count - 1){
+        songs?.forEach({ song in
+            print("SONG LIST")
+            print(song)
+            if(i == (songs!.count) - 1){
+            
                 print("here it comes")
-                var image = loadImageFromDocumentDirectory(nameOfImage: song.image ?? "")
+                var song = song as! MusicData
+                let image = loadImageFromDocumentDirectory(nameOfImage: song.image ??  "1")
                 
                 cell.lastImage.image = image
                 check = 1
                 
             }
             i += 1
+        })
+           
             
-        }
+        
         if check == 0{
             cell.lastImage.image = UIImage(named: "1")
         }
@@ -247,7 +260,7 @@ extension PlayListViewController: UICollectionViewDataSource{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.playListView.reloadData()
-        playLists = PersistentStorage.shared.playlists()
+      //  playLists = PersistentStorage.shared.playlists()
         
     }
     override func viewDidDisappear(_ animated: Bool) {
@@ -262,7 +275,7 @@ extension PlayListViewController: UICollectionViewDataSource{
 
 extension PlayListViewController: PlayListDelegate {
     func deletePlayList() {
-        playLists = PersistentStorage.shared.playlists()
+       // playLists = PersistentStorage.shared.playlists()
         self.playListView.reloadData()
         
     }

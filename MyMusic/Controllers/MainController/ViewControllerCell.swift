@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 var playListArray = [String]()
 class ViewControllerCell: UITableViewCell {
     func sendData(name: String, albumName: String, artistname: String, image: String, trackName: String, thumbImgae: String) {
@@ -52,20 +53,20 @@ class ViewControllerCell: UITableViewCell {
             var name: String?
             
             if action.title != "none" {
-                let newData = MusicData(context: self.context)
-                if let song = self.song {
-                    print(song)
-                    newData.name = song.name!
-                    newData.image = song.image ?? "1"
-                    newData.songUrl = song.songUrl!
-                    newData.albumName = song.albumName ?? " "
-                    newData.artistName = song.artistName ?? " "
-                    newData.id = song.id
-                    PersistentStorage.shared.saveContext()
-                
-                }
+               // let newData = MusicData(context: self.context)
+//                if let song = self.song {
+//                    print(song)
+//                    newData.name = song.name!
+//                    newData.image = song.image ?? "1"
+//                    newData.songUrl = song.songUrl!
+//                    newData.albumName = song.albumName ?? " "
+//                    newData.artistName = song.artistName ?? " "
+//                    newData.id = song.id
+//                    PersistentStorage.shared.saveContext()
+//
+//                }
                 print("New Data")
-                print(newData)
+              //  print(newData)
                 print("done")
                 do {
 
@@ -77,7 +78,30 @@ class ViewControllerCell: UITableViewCell {
                         if playlist.name == action.title{
                             print("playlist Name")
                             print(playlist.name)
-                            playlist.addToSongs(newData)
+                            
+                            playlist.addToSongs(self.song!)
+                            print("TOTAL SONG COUNT AGAINS PLAYLSIT")
+                            print(playlist.songs?.count)
+                          //  print(playlist.songs)
+                            playlist.songs?.forEach({ song1 in
+                                print("SONG LIST")
+                               var song1 = song1 as! MusicData
+                                print(song1.name)
+                                print(song1.image)
+                                if(song1.name == self.song?.name)
+                                {
+                                    let alertController = UIAlertController(title: "Alert", message: "There is a Playlist with same name already exists in your app Choose Another", preferredStyle: .alert)
+
+                                    let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                                    alertController.addAction(okAction)
+                                  //  self.present(alertController, animated: true)
+                                    print("THIS IS ALREADY IN your playsliu")
+                                    
+                                }
+                                
+                                
+                            })
+                            
                             PersistentStorage.shared.saveContext()
                             return
                         }

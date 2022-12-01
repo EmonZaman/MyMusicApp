@@ -379,7 +379,14 @@ class playListSongsViewController: UIViewController, MPMediaPickerControllerDele
             
             
 //            songs = PersistentStorage.shared.songs(playlist: playlist)
-            songs = PersistentStorage.shared.songs(playlist: playlist)
+            var songsList = playlist.songs
+            songsList?.forEach({ song in
+                print("SONG LIST")
+               var song = song as! MusicData
+                 songs.append(song)
+                
+                
+            })
             print("all songs in same playlist")
             print(songs)
 

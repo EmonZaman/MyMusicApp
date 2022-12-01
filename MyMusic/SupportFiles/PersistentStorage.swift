@@ -30,14 +30,14 @@ final class PersistentStorage
     lazy var context = persistentContainer.viewContext
     // MARK: - Core Data Saving support
     func saveContext() {
-        if context.hasChanges {
+        //if context.hasChanges {
             do {
                 try context.save()
             } catch {
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
-        }
+       // }
     }
 
     func fetchManagedObject<T: NSManagedObject>(managedObject: T.Type) -> [T]?
@@ -77,6 +77,7 @@ final class PersistentStorage
     func playlists() -> [Playlist] {
         print("playlist is syuccefully fetching")
           let request: NSFetchRequest<Playlist> = Playlist.fetchRequest()
+        
           var fetchedPlaylists: [Playlist] = []
           
           do {
@@ -89,7 +90,8 @@ final class PersistentStorage
     func songs(playlist: Playlist) -> [MusicData] {
         print("ALL SONGS is Called")
            let request: NSFetchRequest<MusicData> = MusicData.fetchRequest()
-           request.predicate = NSPredicate(format: "playlist = %@", playlist)
+
+        request.predicate = NSPredicate(format: "name == %@", playlist.name!)
         //   request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: false)]
            var fetchedSongs: [MusicData] = []
         print(fetchedSongs)
@@ -113,6 +115,8 @@ final class PersistentStorage
            let context = persistentContainer.viewContext
            context.delete(playlist)
            saveContext()
+           
+           
        }
     
     

@@ -157,18 +157,18 @@ class ViewController: UIViewController, MPMediaPickerControllerDelegate, UITable
             guard let title else{return}
             let outputURL = documentURL.appendingPathComponent("\(title).m4a")
             
-//            if FileManager.default.fileExists(atPath: outputURL.path) {
-//                print("The file already exists at path")
-//                
-//                let alertController = UIAlertController(title: "Alert", message: "This song is already exists in your player Choose another", preferredStyle: .alert)
-//                
-//                let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-//                alertController.addAction(okAction)
-//                self.present(alertController, animated: true)
-//                return
-//                //                return
-//                
-//            }
+            if FileManager.default.fileExists(atPath: outputURL.path) {
+                print("The file already exists at path")
+                
+                let alertController = UIAlertController(title: "Alert", message: "This song is already exists in your player Choose another", preferredStyle: .alert)
+                
+                let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                alertController.addAction(okAction)
+                self.present(alertController, animated: true)
+                return
+                //                return
+                
+            }
             
             print("OUTPUT \(outputURL)")
             let newData = MusicData(context: self.context)
@@ -594,7 +594,7 @@ class ViewController: UIViewController, MPMediaPickerControllerDelegate, UITable
         
         if editingStyle == .delete {
             print("Deleted")
-          // DeleteSongFromDocumentDirectory(nameOfSong: songs[indexPath.row].trackName ?? "none")
+           DeleteSongFromDocumentDirectory(nameOfSong: songs[indexPath.row].trackName ?? "none")
             
             
             let songremove = self.data[indexPath.row]
