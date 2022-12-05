@@ -538,7 +538,8 @@ class ViewController: UIViewController, MPMediaPickerControllerDelegate, UITable
         
         cell.lblSongName?.font = UIFont(name: "Helvetica-Bold", size: 18)
         cell.lblSongDetails?.font = UIFont(name: "Helvetica", size: 17)
-        cell.delegate2 = self
+       
+        
         cell.delegate3 = self
         
       //  cell.folder = self.playlist
@@ -669,13 +670,17 @@ extension ViewController: duplicateSongCheck{
 }
 
 extension ViewController : CellSubclassDelegate{
-    func buttonTapped(cell: ViewControllerCell) {
+    func buttonTapped(cell: ViewControllerCell, song: MusicData) {
         print("deleagte 3 is calling")
         
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "ChoosePlaylistViewController") as? ChoosePlaylistViewController else {
             return
         }
+        vc.song = song
         
+        print("songgss")
+        print(song)
+        vc.delegate2 = self
         
         present(vc, animated: true)
     
