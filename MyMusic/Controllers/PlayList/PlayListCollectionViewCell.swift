@@ -37,7 +37,8 @@ class PlayListCollectionViewCell: UICollectionViewCell {
 
             if action.title == "Delete"{
                 
-              PersistentStorage.shared.deletePlayList(playlist: self.playList!)
+                PersistentStorage.shared.deletePlayList(playlist: self.playList!)
+                PersistentStorage.shared.saveContext()
                 if let delegate = self.delegate {
                     delegate.deletePlayList()
                 }
@@ -95,7 +96,4 @@ class PlayListCollectionViewCell: UICollectionViewCell {
             
         
     }
-        
-            
-    
 }

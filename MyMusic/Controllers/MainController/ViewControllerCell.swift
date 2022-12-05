@@ -20,11 +20,16 @@ protocol duplicateSongCheck: AnyObject {
 
 }
 
-var playListArray = [String]()
+protocol CellSubclassDelegate: AnyObject {
+    func buttonTapped(cell: ViewControllerCell)
+}
+
+//var playListArray = [String]()
 
 
 
 class ViewControllerCell: UITableViewCell {
+  
     
     
     func sendData(name: String, albumName: String, artistname: String, image: String, trackName: String, thumbImgae: String) {
@@ -33,6 +38,7 @@ class ViewControllerCell: UITableViewCell {
     
   //  var delegate2 = duplicateSongCheck.self
     weak var delegate2: duplicateSongCheck?
+    weak var delegate3:CellSubclassDelegate?
     var song: MusicData?
     let context = PersistentStorage.shared.context
     
@@ -43,6 +49,18 @@ class ViewControllerCell: UITableViewCell {
     @IBOutlet weak var lblSongDetails: UILabel!
     
     @IBOutlet weak var mImgVIew: UIImageView!
+    @IBAction func someButtonTapped(_ sender: UIButton) {
+        
+           print("button is working")
+            self.delegate3?.buttonTapped(cell: self)
+        }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.delegate3 = nil
+    }
+
+        
     
     @IBOutlet weak var playlistPopUpButton: UIButton! {
         
@@ -78,10 +96,16 @@ class ViewControllerCell: UITableViewCell {
     }
     
     @objc func buttonAction() {
-        PersistentStorage.shared.saveContext()
-        allPlayList()
-        PersistentStorage.shared.saveContext()
-        setPopUpButton()
+//        PersistentStorage.shared.saveContext()
+//        print("Button is called")
+//        allPlayList()
+//        PersistentStorage.shared.saveContext()
+//        setPopUpButton()
+        func buttonClickAtIndex(index: Int) {
+            
+        }
+        
+        
     }
     
     

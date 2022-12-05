@@ -215,7 +215,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "393B44E4-EBF4-42F6-AB5D-374C1E6ED073"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMusic/Controllers/PlayList/PlayListViewController.swift"
@@ -225,86 +225,6 @@
             endingLineNumber = "110"
             landmarkName = "btnPlayListAdd(_:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "CD13F03B-43F5-4F14-A153-81372A7FAB56"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyMusic/Controllers/PlayList/PlayListViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
-            landmarkName = "checkDuplicate()"
-            landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "C2A45CD2-44F3-4D16-AB91-65F4C315DF5F"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyMusic/Controllers/PlayList/PlayListViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
-            landmarkName = "checkDuplicate()"
-            landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "E7E0B005-6B2B-4771-878B-2AC02756CCB9"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyMusic/Controllers/PlayList/PlayListViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145"
-            landmarkName = "checkDuplicate()"
-            landmarkType = "9">
-            <Locations>
-               <Location
-                  uuid = "E7E0B005-6B2B-4771-878B-2AC02756CCB9 - de1d99ec5dba853e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "checkDuplicate() -&gt; ()"
-                  moduleName = "MyMusic"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/asifwahid/Desktop/emon/Working%20Directory/MyMusic/MyMusic/Controllers/PlayList/PlayListViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "145"
-                  endingLineNumber = "145"
-                  offsetFromSymbolStart = "716">
-               </Location>
-               <Location
-                  uuid = "E7E0B005-6B2B-4771-878B-2AC02756CCB9 - de1d99ec5dba853e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "checkDuplicate() -&gt; ()"
-                  moduleName = "MyMusic"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/asifwahid/Desktop/emon/Working%20Directory/MyMusic/MyMusic/Controllers/PlayList/PlayListViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "145"
-                  endingLineNumber = "145"
-                  offsetFromSymbolStart = "1000">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -381,8 +301,8 @@
             filePath = "MyMusic/Controllers/MainController/ViewControllerCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
             landmarkName = "setPopUpButton()"
             landmarkType = "7">
          </BreakpointContent>
@@ -397,8 +317,8 @@
             filePath = "MyMusic/Controllers/MainController/ViewControllerCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
             landmarkName = "setPopUpButton()"
             landmarkType = "7">
          </BreakpointContent>
@@ -413,8 +333,8 @@
             filePath = "MyMusic/Controllers/MainController/ViewControllerCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
             landmarkName = "setPopUpButton()"
             landmarkType = "7">
             <Locations>
@@ -461,8 +381,8 @@
             filePath = "MyMusic/Controllers/MainController/ViewControllerCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
             landmarkName = "setPopUpButton()"
             landmarkType = "7">
          </BreakpointContent>
@@ -471,7 +391,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "EA5CA0BE-AA34-4A3F-A237-6D4078ACF4A5"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMusic/Controllers/PlayListSong/playListSongsViewController.swift"
@@ -487,7 +407,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "7BA22C7E-B13D-41D9-92AA-C8F604B66321"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMusic/Controllers/PlayListSong/playListSongsViewController.swift"
@@ -503,7 +423,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "2DCED88C-1110-43D0-90D5-1457FD2E1780"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMusic/Controllers/PlayListSong/playListSongsViewController.swift"
@@ -534,40 +454,8 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "4A554489-B2DE-4FC0-BD81-61410980852B"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyMusic/Controllers/PlayList/PlayListCollectionViewCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
-            landmarkName = "setPopUpButton()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "7CF09204-8F4E-4A7A-8AA5-90DF021A2D72"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyMusic/Controllers/PlayList/PlayListCollectionViewCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
-            landmarkName = "setPopUpButton()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "36467A28-70D4-4C85-AF36-E0FFF71C56E3"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMusic/SupportFiles/PersistentStorage.swift"
@@ -663,14 +551,14 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "DE0950EE-6364-4CBD-AB7E-3AE09D56B213"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMusic/Controllers/MainController/ViewControllerCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
             landmarkName = "setPopUpButton()"
             landmarkType = "7">
          </BreakpointContent>
@@ -685,8 +573,8 @@
             filePath = "MyMusic/Controllers/MainController/ViewControllerCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
             landmarkName = "setPopUpButton()"
             landmarkType = "7">
          </BreakpointContent>
@@ -717,8 +605,8 @@
             filePath = "MyMusic/Controllers/MainController/ViewControllerCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
             landmarkName = "awakeFromNib()"
             landmarkType = "7">
          </BreakpointContent>
@@ -727,14 +615,14 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "21826C56-DABC-4678-9AE1-A83D0A270B12"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMusic/Controllers/MainController/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "657"
-            endingLineNumber = "657"
+            startingLineNumber = "658"
+            endingLineNumber = "658"
             landmarkName = "pass(check:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -743,14 +631,14 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "CFF56539-18EE-439A-8CF9-CDDCC23F004B"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMusic/Controllers/MainController/ViewControllerCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
             landmarkName = "setPopUpButton()"
             landmarkType = "7">
          </BreakpointContent>
@@ -759,14 +647,14 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "FBCA6778-1459-4256-9F76-1BCDCF12BF26"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMusic/Controllers/MainController/ViewControllerCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "144"
-            endingLineNumber = "144"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
             landmarkName = "setPopUpButton()"
             landmarkType = "7">
             <Locations>
@@ -807,14 +695,14 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "69D41E05-A9D4-4D21-B5CD-7D92C8F0B3F9"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMusic/Controllers/MainController/ViewControllerCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
+            startingLineNumber = "158"
+            endingLineNumber = "158"
             landmarkName = "setPopUpButton()"
             landmarkType = "7">
          </BreakpointContent>
@@ -823,14 +711,14 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "CC0C50A4-6DCD-40B2-ADF0-CDFE73BB2C80"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMusic/Controllers/MainController/ViewControllerCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
             landmarkName = "setPopUpButton()"
             landmarkType = "7">
          </BreakpointContent>
@@ -839,14 +727,14 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "7EFA3817-709D-4C86-B7AB-241D05D166DA"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMusic/Controllers/MainController/ViewControllerCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
             landmarkName = "setPopUpButton()"
             landmarkType = "7">
          </BreakpointContent>
@@ -855,14 +743,14 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "3EB38246-9FAB-4F4E-93A1-27D21022B53B"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMusic/Controllers/MainController/ViewControllerCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
             landmarkName = "setPopUpButton()"
             landmarkType = "7">
          </BreakpointContent>
@@ -870,48 +758,48 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "65048D54-C359-4B7E-B0EE-26A152EF8E70"
-            shouldBeEnabled = "No"
+            uuid = "F2B13B49-4EA9-42F3-BA96-31DEE853B062"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MyMusic/Controllers/MainController/ViewControllerCell.swift"
+            filePath = "MyMusic/Controllers/PlayList/PlayListCollectionViewCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "243"
-            endingLineNumber = "243"
-            landmarkName = "allPlayList()"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "setPopUpButton()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "339300E9-30FF-48F6-95D3-03D870FCC22F"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyMusic/Controllers/MainController/ViewControllerCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "235"
-            endingLineNumber = "235"
-            landmarkName = "allPlayList()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "EFB8FFA5-9A3C-4204-887F-B086039B9C6E"
+            uuid = "402BC398-BFF6-4A8C-A325-2EE51C390627"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMusic/Controllers/MainController/ViewControllerCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "244"
-            endingLineNumber = "244"
-            landmarkName = "allPlayList()"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
+            landmarkName = "buttonAction()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "39805187-9C4A-401B-9683-4505B0CF458A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMusic/Controllers/MainController/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "673"
+            endingLineNumber = "673"
+            landmarkName = "buttonTapped(cell:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
